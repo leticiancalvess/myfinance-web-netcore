@@ -1,6 +1,9 @@
 using myfinance_web_dotnet_infra;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using myfinance_web_dotnet_service.Interfaces;
+using myfinance_web_dotnet_service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -8,6 +11,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<MyFinanceDbContext>();
+
+builder.Services.AddScoped<IPlanoContaService, PlanoContaService>();
+builder.Services.AddScoped<ITransacaoService, TransacaoService>();
 
 var app = builder.Build();
 
